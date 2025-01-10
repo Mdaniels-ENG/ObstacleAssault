@@ -23,9 +23,13 @@ void AMovingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	FVector LocalVector = MyVector;
+
+	LocalVector.Z++;
+
 	MyVector.Y++;
 	
-	SetActorLocation(MyVector);
+	SetActorLocation(LocalVector);
 
 }
 
