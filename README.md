@@ -3,10 +3,12 @@ A simple platformer game created as part of the Udemy course "Unreal Engine 5 C+
 
 ## Project Setup
 **Engine:** Unreal Engine 5.4
+
 **Languages:** C++ & Blueprint Visual Scripting
+
 **Included Packages/Libraries:**
--Unreal Learning Kit: Games
--Stylized Character Kit: Casual 01
+- Unreal Learning Kit: Games
+- Stylized Character Kit: Casual 01
 
 ## Project Goals
 - Create a project with packaged assets.
