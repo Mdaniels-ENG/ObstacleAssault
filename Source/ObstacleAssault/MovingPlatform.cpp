@@ -34,23 +34,32 @@ void AMovingPlatform::Tick(float DeltaTime)
 
 void AMovingPlatform::MovePlatform(float DeltaTime)
 {
-	FVector CurrentLocation = GetActorLocation();
-	CurrentLocation += PlatformVelocity * DeltaTime;
-	SetActorLocation(CurrentLocation);
-	float DistanceMoved = FVector::Dist(StartLocation, CurrentLocation);
-	if(DistanceMoved > MoveDistance)
+	if(ShouldPlatformReturn())
 	{
-		float OverShoot = DistanceMoved - MoveDistance;
-		FString PlatformName = GetName();
-		UE_LOG(LogTemp, Display, TEXT("%s over shot by %fcm"), *PlatformName, OverShoot);
 		FVector MoveDirection = PlatformVelocity.GetSafeNormal();
 		StartLocation += MoveDirection * MoveDistance;
 		SetActorLocation(StartLocation);
 		PlatformVelocity *= -1;
+	}
+	else
+	{
+		FVector CurrentLocation = GetActorLocation();
+		CurrentLocation += PlatformVelocity * DeltaTime;
+		SetActorLocation(CurrentLocation);
 	}
 }
 
 void AMovingPlatform::RotatePlatform(float DeltaTime)
 {
 	UE_LOG(LogTemp, Display, TEXT("Rotating %s"), *GetName());
+}
+
+bool AMovingPlatform::ShouldPlatformReturn()
+{
+	return GetDistanceMoved() > MoveDistance;
+}
+
+float AMovingPlatform::GetDistanceMoved()
+{
+	return FVector::Dist(StartLocation, GetActorLocation());
 }
