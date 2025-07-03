@@ -24,10 +24,12 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
-	UPROPERTY(EditAnywhere, Category="Transformation Movement")
+	UPROPERTY(EditAnywhere, Category="Movement")
 	FVector PlatformVelocity = FVector(100, 0, 0);
-	UPROPERTY(EditAnywhere, Category="Transformation Movement")
+	UPROPERTY(EditAnywhere, Category="Movement")
 	float MoveDistance = 100;
+	UPROPERTY(EditAnywhere, Category="Rotation")
+	FRotator RotationVelocity;
 
 	FVector StartLocation;
 
